@@ -1,60 +1,49 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
     <v-content>
-      <HelloWorld/>
+      <div class="d-flex flex-column justify-center fill-height medic">
+        <v-icon class="display-4 primary--text mb-10">mdi-hospital-box</v-icon>
+        <h1 class="text-center display-3" id="drop-shadow">Sistem Pakar</h1>
+        <h1 class="text-center display-3" id="drop-shadow">Diagnosa Penyakit Umum Manusia</h1>
+        <v-container class="button-nav">
+          <v-row justify="center">
+            <v-col cols="4" class="text-center">
+              <v-btn x-large class="headline " color="primary" >Check Up</v-btn>
+            </v-col>
+            <v-col cols="4" class="text-center">
+              <v-btn x-large class="headline " color="primary" outlined>About</v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
     </v-content>
   </v-app>
 </template>
 
+<style>
+  .overlay{
+    position: absolute;
+    height: 100vh;
+    width: 100vh;
+  }
+  #app, .v-application .d-flex .display-3, .v-btn__content{
+    font-family: 'Cagliostro' !important;
+  }
+  #drop-shadow{
+    text-shadow: 0px 4px 8px rgba(90, 186, 74, 0.5);
+    letter-spacing: 0.105em !important;
+  }
+  .button-nav{
+    margin-top:150px;
+  }
+  .medic{
+    background: url('./assets/undraw_medicine_b1ol.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: fit;
+  }
+</style>
+
 <script>
-import HelloWorld from './components/HelloWorld';
-
-export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-};
 </script>
