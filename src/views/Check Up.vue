@@ -1,10 +1,10 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="4" v-if="this.$vuetify.breakpoint.mdAndUp">
+      <v-col md='4' cols='12' order-md="1" order="2">
         <p
           style="margin-top: 50px"
-        >*silahkan jawab pertanyaan disamping untuk mengetahui penyakit yang anda alami.</p>
+        >*silahkan jawab pertanyaan untuk mengetahui penyakit yang anda alami.</p>
         <h2 class="text-center my-10">Gejala anda</h2>
         <v-simple-table>
           <template v-slot:default>
@@ -23,7 +23,7 @@
           </template>
         </v-simple-table>
       </v-col>
-      <v-col cols="12" md="8">
+      <v-col cols="12" md="8" order-md="2" order="1">
         <div class="d-flex flex-column">
           <v-img
             class="align-self-center my-10"
@@ -31,7 +31,7 @@
             max-width="300px"
           ></v-img>
           <v-stepper v-model="stepper">
-            <v-stepper-header>
+            <v-stepper-header style="overflow: hidden">
               <v-stepper-step
                 v-for="i in questions.length"
                 :key="i"
@@ -41,16 +41,21 @@
             </v-stepper-header>
 
             <v-stepper-items>
-              <v-stepper-content v-for="(question,i) in questions" :key="question.index" :step="i+1">
+              <v-stepper-content
+                v-for="(question,i) in questions"
+                :key="question.index"
+                :step="i+1"
+              >
                 <div class="text-center">
-                  
                   <p class="title">{{tq}}</p>
                   <v-btn
+                    :x-small="$vuetify.breakpoint.smAndDown"
                     color="primary"
                     class="mx-10"
                     @click="next(question.step[currentIndex],'iya')"
                   >Iya</v-btn>
                   <v-btn
+                    :x-small="$vuetify.breakpoint.smAndDown"
                     color="primary"
                     outlined
                     class="mx-10"
@@ -116,9 +121,22 @@ export default {
         },
         {
           step: [
-            { code: "G007", gejala: "melepuh, mengelupas", question: "Apakah kulit anda melepuh/mengelupas?" },
-            { code: "G008", gejala: "Bengkak", question: "Apakah ada bengkak di area tertentu?" },
-            { code: "G009", gejala: "Terkena bahan panas", question: "Apakah bagian yang melepuh tersebut terkena bahan panas?" },
+            {
+              code: "G007",
+              gejala: "melepuh, mengelupas",
+              question: "Apakah kulit anda melepuh/mengelupas?"
+            },
+            {
+              code: "G008",
+              gejala: "Bengkak",
+              question: "Apakah ada bengkak di area tertentu?"
+            },
+            {
+              code: "G009",
+              gejala: "Terkena bahan panas",
+              question:
+                "Apakah bagian yang melepuh tersebut terkena bahan panas?"
+            },
             {
               code: "G010",
               gejala: "Ruam kulit diseluruh tubuh",
@@ -129,27 +147,77 @@ export default {
               gejala: "Lepuhan kecil berisi cairan (vesikel)",
               question: "Apakah terdapat lepuhan kecil berisi air?"
             },
-            { code: "G012", gejala: "Suara serak bahkan hilang", question: "Apakah suara anda serak atau bahkan hilang?" },
-            { code: "G013", gejala: "Sakit menelan", question: "Apakah terasa sakit saat menelan?" }
+            {
+              code: "G012",
+              gejala: "Suara serak bahkan hilang",
+              question: "Apakah suara anda serak atau bahkan hilang?"
+            },
+            {
+              code: "G013",
+              gejala: "Sakit menelan",
+              question: "Apakah terasa sakit saat menelan?"
+            }
           ],
           index: 1
         },
         {
           step: [
-            { code: "G014", gejala: "Batuk", question: "Apakah anda batuk-batuk?" },
-            { code: "G015", gejala: "Amandel membengkak", question: "Apakah amandel anda terasa membengkak?" },
-            { code: "G016", gejala: "Gigi berlubang", question: "Apakah gigi anda berlubang?" },
-            { code: "G017", gejala: "Gigi terasa sakit", question: "Apakah gigi anda terasa sakit?" },
-            { code: "G018", gejala: "Tumbuh daging di gigi", question: "Apakah tumbuh daging di gigi anda?" }
+            {
+              code: "G014",
+              gejala: "Batuk",
+              question: "Apakah anda batuk-batuk?"
+            },
+            {
+              code: "G015",
+              gejala: "Amandel membengkak",
+              question: "Apakah amandel anda terasa membengkak?"
+            },
+            {
+              code: "G016",
+              gejala: "Gigi berlubang",
+              question: "Apakah gigi anda berlubang?"
+            },
+            {
+              code: "G017",
+              gejala: "Gigi terasa sakit",
+              question: "Apakah gigi anda terasa sakit?"
+            },
+            {
+              code: "G018",
+              gejala: "Tumbuh daging di gigi",
+              question: "Apakah tumbuh daging di gigi anda?"
+            }
           ]
         },
         {
           step: [
-            { code: "G019", gejala: "Mata terasa gatal", question: "Apakah mata terasa gatal?" },
-            { code: "G020", gejala: "Mata merah", question: "Apakah mata anda memerah?" },
-            { code: "G021", gejala: "Mata berair", question: "Apakah mata anda terkadang mengeluarkan air tanpa anda sadari?" },
-            { code: "G022", gejala: "Kotoran mata makin banyak", question: "Apakah kotoran dimata anda semakin membanyak walaupun sudah anda bersihkan?" },
-            { code: "G023", gejala: "Sakit/nyeri dikelopak", question: "Apakah terasa sakit/nyeri di kelopak mata?" }
+            {
+              code: "G019",
+              gejala: "Mata terasa gatal",
+              question: "Apakah mata terasa gatal?"
+            },
+            {
+              code: "G020",
+              gejala: "Mata merah",
+              question: "Apakah mata anda memerah?"
+            },
+            {
+              code: "G021",
+              gejala: "Mata berair",
+              question:
+                "Apakah mata anda terkadang mengeluarkan air tanpa anda sadari?"
+            },
+            {
+              code: "G022",
+              gejala: "Kotoran mata makin banyak",
+              question:
+                "Apakah kotoran dimata anda semakin membanyak walaupun sudah anda bersihkan?"
+            },
+            {
+              code: "G023",
+              gejala: "Sakit/nyeri dikelopak",
+              question: "Apakah terasa sakit/nyeri di kelopak mata?"
+            }
           ],
           index: 2
         },
@@ -173,7 +241,8 @@ export default {
             {
               code: "G028",
               gejala: "Perlu waktu terbiasa terhadap cahaya",
-              question: "Apakah anda perlu waktu untuk terbiasa terhadap cahaya?"
+              question:
+                "Apakah anda perlu waktu untuk terbiasa terhadap cahaya?"
             }
           ],
           index: 3
@@ -182,7 +251,7 @@ export default {
       table: [],
       currentIndex: 0,
       goNext: false,
-      tq: 'Apakah Anda memiliki riwayat Alergi?'
+      tq: "Apakah Anda memiliki riwayat Alergi?"
     };
   },
   methods: {
@@ -191,14 +260,16 @@ export default {
         this.table.push(data);
       }
       let size = this.questions[this.stepper - 1].step.length;
-      
+
       if (this.currentIndex < size - 1) {
         this.currentIndex++;
       } else {
         this.stepper++;
         this.currentIndex = 0;
       }
-      this.tq = this.questions[this.stepper-1].step[this.currentIndex].question
+      this.tq = this.questions[this.stepper - 1].step[
+        this.currentIndex
+      ].question;
     },
     hasil() {
       let gejala = "";
